@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Results</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<head><img src="https://www.pikpng.com/pngl/b/204-2047732_olopsc-logo-our-lady-of-perpetual-succor-college.png" width="10%"></head>
+<body>
+
+    <div class="container">
+        <h1>Quiz Results</h1>
+        <div id="results"></div>
+        <button onclick="goBack()">Go Back to Quiz</button>
+    </div>
+
+    <script>
+        // Retrieve results from local storage
+        const results = JSON.parse(localStorage.getItem('quizResults'));
+        
+        if (results) {
+            let resultHtml = `<h2>Student Information</h2>
+                              <p><strong>Name:</strong> ${results.name}</p>
+                              <p><strong>Section:</strong> ${results.section}</p>
+                              <p><strong>Date:</strong> ${results.date}</p>
+                              <h2>Quiz Answers</h2>`;
+            
+            // Loop through the results and format them
+            resultHtml += `<ul>`;
+            resultHtml += `<li><strong>1. What is the purpose of the &lt;a&gt; tag?</strong> - It defines a hyperlink, which is used to link from one page to another. </li>`;
+            resultHtml += `<li><strong>2. Which of the following elements is used to create an ordered list?</strong> - < ol > </li>`;
+            resultHtml += `<li><strong>3. Identify the image and explain what it represents:</strong> -Img tag </li>`;
+            resultHtml += `<li><strong>4. Select 1 HTML Feature:</strong> - Forms </li>`;
+            resultHtml += `<li><strong>5. Which of the following is a semantic HTML element?</strong> - < article ></li>`;
+            resultHtml += `<li><strong>6. What does the &lt;img&gt; tag require to function properly?</strong> - src </li>`;
+            resultHtml += `<li><strong>7. Describe the structure of a basic HTML document:</strong> - a line containing HTML version information, a declarative header section (delimited by the HEAD element), a body, which contains the document's actual content. </li>`;
+            resultHtml += `<li><strong>8. Significance of the &lt;head&gt; section:</strong>- It's a container for metadata (data about data) and other information that isn't content to be displayed on the web page itself but is essential for the web browser and other functionalities.</li>`;
+            resultHtml += `<li><strong>9. Difference between &lt;strong&gt; and &lt;b&gt; tags:</strong> The <strong> element is for content that is of greater importance, while the <b> element is used to draw attention to text without indicating that it's more important</li>`;
+            resultHtml += `<li><strong>10. Attributes of the &lt;a&gt; tag:</strong> - attribute of the < a > the element is the href attribute</li>`;
+            resultHtml += `</ul>`;
+            
+            document.getElementById('results').innerHTML = resultHtml;
+        } else {
+            document.getElementById('results').innerText = 'No results found.';
+        }
+
+        function goBack() {
+            window.location.href = 'quiz.html'; // Redirect back to quiz page
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baylon's 10-Item Quiz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<head><img src="https://www.pikpng.com/pngl/b/204-2047732_olopsc-logo-our-lady-of-perpetual-succor-college.png" width="10%"></head>
+<body>
+
+    <div class="container">
+        <h1>ICT 1 HTML</h1>
+
+        <div class="quiz-section">
+            <h2>Student Information</h2>
+            <form id="quizForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="section">Section:</label>
+                <input type="text" id="section" name="section" required>
+
+                <label for="date">Date today:</label>
+                <input type="date" id="date" name="date" required>
+            </form>
+        </div>
+
+        <div class="quiz-section">
+            <h2>Quiz Questions</h2>
+            
+            <h3>1. What is the purpose of the `< a >` tag?</h3>
+            <input type="text" name="answer1" required>
+
+            <h3>2. Which of the following elements is used to create an ordered list?</h3>
+            <label><input type="radio" name="listType" value="ol" required> `< ol >`</label>
+            <label><input type="radio" name="listType" value="ul"> `< ul >`</label>
+
+            <h3>3. Identify the image below and explain what it represents.</h3>
+            <img src="https://cdn.discordapp.com/attachments/1262067781780897856/1292516804668817408/Screenshot_2024-10-06_191758.png?ex=67040594&is=6702b414&hm=0e532bfee249b56dd3668543dc7ada90c50bc446212a8401f46e88b0f567bad2&" alt="Placeholder Image">
+            <textarea name="imageQuestion" rows="4" placeholder="Your answer..."></textarea>
+
+            <h3>4. Select 1 HTML Feature:</h3>
+            <label><input type="checkbox" name="htmlFeatures" value="forms"> Forms</label>
+            <label><input type="checkbox" name="htmlFeatures" value="container"> Containers</label>
+
+            <h3>5. Which of the following is a semantic HTML element?</h3>
+            <select name="semanticElement">
+                <option value="div">`< div >`</option>
+                <option value="article">`< article >`</option>
+            </select>
+
+            <h3>6. What does the `< img >` tag require to function properly?</h3>
+            <input type="text" name="answer6" required>
+
+            <h3>7. Describe the structure of a basic HTML document.</h3>
+            <textarea name="htmlStructure" rows="4" placeholder="Your answer..."></textarea>
+
+            <h3>8. What is the significance of the `< head >` section in an HTML document?</h3>
+            <input type="text" name="answer8" required>
+
+            <h3>9. Explain the difference between `< strong >` and `<b>` tags.</h3>
+            <textarea name="strongVsBold" rows="4" placeholder="Your answer..."></textarea>
+
+            <h3>10. List two attributes of the `< a >` tag.</h3>
+            <input type="text" name="answer10" required>
+        </div>
+
+        <button type="submit" id="submitQuiz">Submit Quiz</button>
+    </div>
+
+    <script>
+        document.getElementById('submitQuiz').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const form = document.getElementById('quizForm');
+            const formData = new FormData(form);
+            const results = {};
+
+            // Collect student information
+            results.name = formData.get('name');
+            results.section = formData.get('section');
+            results.date = formData.get('date');
+
+            // Collect quiz answers
+            results.answer1 = formData.get('answer1');
+            results.listType = formData.get('listType');
+            results.imageQuestion = formData.get('imageQuestion');
+            results.htmlFeatures = formData.getAll('htmlFeatures'); // Get all selected checkboxes
+            results.semanticElement = formData.get('semanticElement');
+            results.answer6 = formData.get('answer6');
+            results.htmlStructure = formData.get('htmlStructure');
+            results.answer8 = formData.get('answer8');
+            results.strongVsBold = formData.get('strongVsBold');
+            results.answer10 = formData.get('answer10');
+
+            // Store results in local storage and redirect to results page
+            localStorage.setItem('quizResults', JSON.stringify(results));
+            window.location.href = 'results.html'; // Redirect to results page
+        });
+    </script>
+
+</body>
+</html>
